@@ -74,7 +74,6 @@ st.markdown("""
     </style>
 """, unsafe_allow_html=True)
 
-
 @dataclass
 class StartupInfo:
     name: str
@@ -423,8 +422,7 @@ def landing_page():
                     "Education & EdTech",
                     "Manufacturing",
                     "Professional Services",
-                    "Media & Entertainment",
-                    "Other"
+                    "Media & Entertainment","Other"
                 ],
                 help="Select the primary industry your startup operates in"
             )
@@ -607,6 +605,11 @@ def display_dashboard(startup: StartupInfo, analysis_results: Dict):
         </div>
     """, unsafe_allow_html=True)
     
+    # Add a "Start New Analysis" button at the top
+    if st.button("Start New Analysis"):
+        st.session_state.analysis_complete = False
+        st.rerun()
+    
     # Key Metrics Overview
     col1, col2, col3, col4 = st.columns(4)
     
@@ -624,7 +627,7 @@ def display_dashboard(startup: StartupInfo, analysis_results: Dict):
                 <div class="metric-value" style="color: {data['color']}">{data['value']}</div>
             </div>
         """, unsafe_allow_html=True)
-    
+
     # Main Dashboard Tabs
     tabs = st.tabs([
         "🔍 Market Analysis",
@@ -860,7 +863,7 @@ def display_dashboard(startup: StartupInfo, analysis_results: Dict):
         
         st.markdown('</div>', unsafe_allow_html=True)
 
-# Update the main function to use the new dashboard
+# Update the main function to use the new dashboard layout
 def main():
     if "analysis_complete" not in st.session_state:
         st.session_state.analysis_complete = False
@@ -876,19 +879,6 @@ def main():
                 st.success("Analysis complete! Displaying insights...")
                 st.rerun()
     else:
-        # Add a sidebar with additional options
-        with st.sidebar:
-            st.image("https://via.placeholder.com/150", caption=st.session_state.startup_info.name)
-            st.markdown("---")
-            if st.button("Start New Analysis"):
-                st.session_state.analysis_complete = False
-                st.rerun()
-            st.markdown("---")
-            st.markdown("### Quick Links")
-            st.markdown("- [Export Report](#)")
-            st.markdown("- [Share Insights](#)")
-            st.markdown("- [Help Center](#)")
-        
         display_dashboard(
             st.session_state.startup_info,
             st.session_state.analysis_results
