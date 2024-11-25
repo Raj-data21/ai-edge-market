@@ -1,0 +1,9 @@
+streamlit
+plotly
+pandas
+python-dotenv
+newsapi-python
+alpha_vantage
+google-generativeai
+requests
+asyncio
