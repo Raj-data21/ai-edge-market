@@ -17,6 +17,14 @@ from alpha_vantage.timeseries import TimeSeries
 
 # Load environment variables and initialize APIs
 load_dotenv()
+
+GROQ_API_KEY = st.secrets["GROQ_API_KEY"] if "GROQ_API_KEY" in st.secrets else os.getenv("GROQ_API_KEY")
+GEMINI_API_KEY = st.secrets["GEMINI_API_KEY"] if "GEMINI_API_KEY" in st.secrets else os.getenv("GEMINI_API_KEY")
+NEWS_API_KEY = st.secrets["NEWS_API_KEY"] if "NEWS_API_KEY" in st.secrets else os.getenv("NEWS_API_KEY")
+BING_API_KEY = st.secrets["BING_API_KEY"] if "BING_API_KEY" in st.secrets else os.getenv("BING_API_KEY")
+ALPHA_VANTAGE_KEY = st.secrets["ALPHA_VANTAGE_KEY"] if "ALPHA_VANTAGE_KEY" in st.secrets else os.getenv("ALPHA_VANTAGE_KEY")
+YAHOO_FINANCE_KEY = st.secrets["YAHOO_FINANCE_KEY"] if "YAHOO_FINANCE_KEY" in st.secrets else os.getenv("YAHOO_FINANCE_KEY")
+
 newsapi = NewsApiClient(api_key=os.getenv("NEWS_API_KEY"))
 ALPHA_VANTAGE_KEY = os.getenv("ALPHA_VANTAGE_KEY")
 BING_API_KEY = os.getenv("BING_API_KEY")
